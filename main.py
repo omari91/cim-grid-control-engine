@@ -15,9 +15,9 @@ from scipy.sparse import csr_matrix
 GLOBAL_TRAFO_LIMIT_MW = 45.0
 # API Config (In production, load from os.environ)
 NTP_CONFIG = {
-    "base_url": "https://ds.netztransparenz.de/api/v1/data",
+    "base_url": "https://....",
     # Placeholder credentials
-    "client_id": "demo_id", "client_secret": "demo_secret", "token_url": "https://demo.url"
+    "client_id": "demo_id", "client_secret": "demo_secret", "token_url": "https://..."
 }
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
