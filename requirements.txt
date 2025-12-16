@@ -3,3 +3,4 @@ networkx
 pydantic
 scipy
 matplotlib
+requests
