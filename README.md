@@ -15,6 +15,17 @@ This project implements a hybrid physics-software engine for analyzing low-volta
 - **Layer 3: Solvers (SciPy/NumPy):** Implements numerical methods for non-linear power flow.
 - **Layer 4: Application:** Orchestrates solvers to answer business questions (e.g., "Can I connect this EV charger?").
 
+## Engineering Assumptions & Future Roadmap
+
+### Physical Assumptions
+- **Three-Phase Balance:** The solver currently assumes a perfectly balanced three-phase system and models the positive sequence network.
+- **Topology:** The Forward-Backward Sweep (FBS) implementation is optimized for **radial** distribution feeders (trees). Meshed topologies would require a Newton-Raphson solver upgrade.
+
+### Production Considerations (TODOs)
+- **Scaling:** The current BFS parent lookup is $O(N^2)$ in the worst case. For production grids (>10k nodes), this would be optimized to $O(N)$ by caching the tree structure.
+- **Concurrency:** The hosting capacity algorithm currently mutates the grid state in-place. A production version would use immutable data structures to ensure thread safety in a REST API context.
+- **Grid Codes:** The Fuzzy Logic Controller is a conceptual demonstration. Real-world implementation would require adherence to VDE-AR-N 4105 static voltage support curves.
+
 ## Quick Start
 1. Install dependencies:
    ```bash
