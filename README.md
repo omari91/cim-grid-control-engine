@@ -36,3 +36,4 @@ This project implements a hybrid physics-software engine for analyzing low-volta
 Bash
 
 python main.py
+## rem to update 0. CONFIGURATION & CONSTANTS before runing
