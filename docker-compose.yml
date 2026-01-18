@@ -1,0 +1,88 @@
+# =============================================================================
+# Docker Compose Configuration for CIM Grid Control Engine
+# Simplifies container management and deployment
+# =============================================================================
+
+version: '3.8'
+
+services:
+  # Main grid engine service
+  grid-engine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cim-grid-control-engine:latest
+    container_name: grid-engine
+    
+    # Resource limits (adjust based on grid size)
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '1.0'
+          memory: 512M
+    
+    # Environment variables (can be customized)
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MPLBACKEND=Agg
+      # Add custom config here:
+      # - N_BUSES=20
+      # - VOLTAGE_KV=20.0
+    
+    # Volume mounts for data persistence and output
+    volumes:
+      # Mount output directory for results
+      - ./output:/app/output
+      # Mount custom grid data if needed
+      # - ./grid_data:/app/grid_data:ro
+    
+    # Restart policy
+    restart: unless-stopped
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "python", "-c", "import numpy, networkx, pydantic, scipy; print('OK')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+# Optional: Define volumes for data persistence
+volumes:
+  output:
+    driver: local
+
+# Optional: Define custom network
+networks:
+  default:
+    name: grid-engine-network
+    driver: bridge
+
+# =============================================================================
+# Usage Instructions:
+#
+# Build and start:
+#   docker-compose up -d
+#
+# View logs:
+#   docker-compose logs -f
+#
+# Stop service:
+#   docker-compose down
+#
+# Rebuild after code changes:
+#   docker-compose up -d --build
+#
+# Run one-off simulation:
+#   docker-compose run --rm grid-engine python main.py
+# ============================================================================="
