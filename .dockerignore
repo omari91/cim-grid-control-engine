@@ -1,0 +1,88 @@
+# =============================================================================
+# .dockerignore - Exclude files from Docker build context
+# Reduces build context size and speeds up builds
+# =============================================================================
+
+# Version Control
+.git
+.gitignore
+.gitattributes
+
+# GitHub
+.github
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+
+# Documentation
+docs/
+*.md
+!requirements.txt
+
+# Docker files (no need to copy these into the image)
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Output and temporary files
+*.log
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Matplotlib cache (generated at runtime)
+.matplotlib/
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.local
+
+# OS files
+Thumbs.db
+.DS_Store
