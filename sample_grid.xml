@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+         xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#">
+
+  <!-- Connectivity Nodes -->
+  <cim:ConnectivityNode rdf:ID="node_1">
+    <cim:ConnectivityNode.voltageLevelKV>20.0</cim:ConnectivityNode.voltageLevelKV>
+    <cim:ConnectivityNode.type>SLACK</cim:ConnectivityNode.type>
+  </cim:ConnectivityNode>
+
+  <cim:ConnectivityNode rdf:ID="node_2">
+    <cim:ConnectivityNode.voltageLevelKV>20.0</cim:ConnectivityNode.voltageLevelKV>
+    <cim:ConnectivityNode.type>PQ</cim:ConnectivityNode.type>
+  </cim:ConnectivityNode>
+
+  <cim:ConnectivityNode rdf:ID="node_3">
+    <cim:ConnectivityNode.voltageLevelKV>20.0</cim:ConnectivityNode.voltageLevelKV>
+    <cim:ConnectivityNode.type>PQ</cim:ConnectivityNode.type>
+  </cim:ConnectivityNode>
+
+  <!-- AC Line Segments -->
+  <cim:ACLineSegment rdf:ID="line_1">
+    <cim:ACLineSegment.fromNode rdf:resource="#node_1"/>
+    <cim:ACLineSegment.toNode rdf:resource="#node_2"/>
+    <cim:ACLineSegment.length>1.2</cim:ACLineSegment.length>
+    <cim:ACLineSegment.r>0.2</cim:ACLineSegment.r>
+    <cim:ACLineSegment.x>0.12</cim:ACLineSegment.x>
+  </cim:ACLineSegment>
+
+  <cim:ACLineSegment rdf:ID="line_2">
+    <cim:ACLineSegment.fromNode rdf:resource="#node_2"/>
+    <cim:ACLineSegment.toNode rdf:resource="#node_3"/>
+    <cim:ACLineSegment.length>0.8</cim:ACLineSegment.length>
+    <cim:ACLineSegment.r>0.2</cim:ACLineSegment.r>
+    <cim:ACLineSegment.x>0.12</cim:ACLineSegment.x>
+  </cim:ACLineSegment>
+
+  <!-- Energy Consumers -->
+  <cim:EnergyConsumer rdf:ID="load_1">
+    <cim:EnergyConsumer.node rdf:resource="#node_3"/>
+    <cim:EnergyConsumer.p>1.5</cim:EnergyConsumer.p>
+    <cim:EnergyConsumer.q>0.3</cim:EnergyConsumer.q>
+  </cim:EnergyConsumer>
+
+</rdf:RDF>
